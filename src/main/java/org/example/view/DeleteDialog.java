@@ -48,6 +48,7 @@ public class DeleteDialog extends JDialog {
         buttonCancel = new JButton("Cancel");
         jPanelButton.add(buttonCancel);
 
+
         buttonOk.addActionListener(new ActionListener() {
 
             @Override
