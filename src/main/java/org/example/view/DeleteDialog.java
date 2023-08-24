@@ -1,10 +1,14 @@
 package org.example.view;
 
+import org.example.dao.ContactDao;
+import org.example.model.Contact;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class DeleteDialog extends JDialog {
 
@@ -18,7 +22,7 @@ public class DeleteDialog extends JDialog {
     public DeleteDialog() {
 
         contentPanel = new JPanel();
-        setTitle("Update Contact");
+        setTitle("Delete Contact");
         setBounds(500, 500, 400, 250);
         getContentPane().setLayout(new BorderLayout());
         contentPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -44,10 +48,25 @@ public class DeleteDialog extends JDialog {
         buttonCancel = new JButton("Cancel");
         jPanelButton.add(buttonCancel);
 
-        buttonCancel.addActionListener(new ActionListener() {
+        buttonOk.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                Contact contact = new Contact();
+                ContactDao contactDao = new ContactDao();
+                int count = 0;
+                try {
+                    count = contactDao.deleteContact(contact);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+                if (count > 0) {
+                    JOptionPane
+                            .showConfirmDialog(null, "delete successfull");
+                } else {
+                    JOptionPane
+                            .showConfirmDialog(null, "Error");
+                }
                 dispose();
             }
         });

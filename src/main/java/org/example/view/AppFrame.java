@@ -1,15 +1,12 @@
 package org.example.view;
 
 import lombok.Data;
-import org.example.dao.ContactDao;
-import org.example.model.Contact;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
+
 
 @Data
 public class AppFrame extends JDialog {
@@ -31,8 +28,6 @@ public class AppFrame extends JDialog {
 
         JPanel jPanelButton = new JPanel();
         JPanel jPanelSelectButton = new JPanel();
-        //jPanelButton.setLayout(new FlowLayout(FlowLayout.CENTER));
-        //this.add(Box.createHorizontalStrut(20));
         getContentPane().add(jPanelButton, BorderLayout.NORTH);
         getContentPane().add(jPanelSelectButton, BorderLayout.CENTER);
 
@@ -45,15 +40,13 @@ public class AppFrame extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    UpdateDialog dialog = new UpdateDialog();
+                    InsertDialog dialog = new InsertDialog();
                     dialog.setModalityType(ModalityType.APPLICATION_MODAL);
                     dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                     dialog.setVisible(true);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
-
-                dispose();
             }
 
         });
@@ -98,19 +91,19 @@ public class AppFrame extends JDialog {
         selectButton = new JButton("select");
         jPanelSelectButton.add(selectButton);
 
-//        selectButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                try {
-//                    SelectDialog dialog = new SelectDialog();
-//                    dialog.setModalityType(ModalityType.APPLICATION_MODAL);
-//                    dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-//                    dialog.setVisible(true);
-//                } catch (Exception ex) {
-//                    ex.printStackTrace();
-//                }
-//            }
-//        });
+        selectButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    SelectDialog dialog = new SelectDialog();
+                    dialog.setModalityType(ModalityType.APPLICATION_MODAL);
+                    dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                    dialog.setVisible(true);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
 
 
     }

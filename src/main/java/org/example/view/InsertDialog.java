@@ -10,26 +10,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
-public class UpdateDialog extends JDialog {
+public class InsertDialog extends JDialog{
 
     private JPanel contentPanel;
 
-    private JTextField txtName, txtNumber, idSearch;
+    private JTextField txtName, txtNumber;
 
-    public UpdateDialog() {
+    public InsertDialog() {
 
         contentPanel = new JPanel();
-        setTitle("Update Contact");
+        setTitle("Insert Contact");
         setBounds(500, 500, 400, 250);
         getContentPane().setLayout(new BorderLayout());
         contentPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
         getContentPane().add(contentPanel, BorderLayout.CENTER);
         contentPanel.setLayout(null);
 
-        idSearch = new JTextField();
-        idSearch.setBounds(80, 10, 80, 20);
-        contentPanel.add(idSearch);
-        idSearch.setColumns(10);
 
         txtName = new JTextField();
         txtName.setBounds(80, 40, 80, 20);
@@ -49,9 +45,6 @@ public class UpdateDialog extends JDialog {
         lblNum.setBounds(10, 70, 50, 15);
         contentPanel.add(lblNum);
 
-        JLabel lblSearch = new JLabel("search: ");
-        lblSearch.setBounds(10, 10, 50, 15);
-        contentPanel.add(lblSearch);
 
         JPanel jPanelButton = new JPanel();
         jPanelButton.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -64,23 +57,26 @@ public class UpdateDialog extends JDialog {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                Contact contact = null;
+                Contact contact = new Contact();
+                contact.setName(txtName.getText());
+                contact.setNumber(txtNumber.getText());
+
                 ContactDao contactDao = new ContactDao();
+                int count = 0;
                 try {
-                    contactDao.updateContact(contact);
+                    count = contactDao.addContact(contact);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
-                if (contact != null) {
+                if (count > 0) {
                     JOptionPane
-                            .showConfirmDialog(null, "update successfull");
+                            .showConfirmDialog(null, "insert successfull");
                 } else {
                     JOptionPane
                             .showConfirmDialog(null, "Error");
                 }
                 dispose();
             }
-
 
         });
 
@@ -93,16 +89,8 @@ public class UpdateDialog extends JDialog {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                Contact contact = null;
-                ContactDao contactDao = new ContactDao();
-                try {
-                    contactDao.updateContact(contact);
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
                 dispose();
             }
-
         });
 
     }
