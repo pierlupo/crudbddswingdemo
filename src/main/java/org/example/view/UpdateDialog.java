@@ -64,14 +64,17 @@ public class UpdateDialog extends JDialog {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                Contact contact = null;
+                Contact contact = new Contact();
+                contact.setId(Integer.parseInt(idSearch.getText()));
+                contact.setName(txtName.getText());
+                contact.setNumber(txtNumber.getText());
                 ContactDao contactDao = new ContactDao();
                 try {
                     contactDao.updateContact(contact);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
-                if (contact != null) {
+                if (contact.getId()>0) {
                     JOptionPane
                             .showConfirmDialog(null, "update successfull");
                 } else {

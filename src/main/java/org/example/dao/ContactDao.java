@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ContactDao {
 
@@ -26,25 +27,24 @@ public class ContactDao {
 
     }
 
-    public int deleteContact(Contact contact) throws SQLException {
+    public void deleteContact(Contact contact) throws SQLException {
 
         con = ConnectionUtil.getConnection();
-        ps = con.prepareStatement("DELETE FROM `contact` (`name`, `number`) WHERE id = ?");
-        ps.setString(1, contact.getName());
-        ps.setString(2, contact.getNumber());
-        int n = ps.executeUpdate();
-        return n;
-
+        ps = con.prepareStatement("DELETE FROM `contact` WHERE id = ?");
+        ps.setInt(1, contact.getId());
+        ps.executeUpdate();
     }
 
-    public boolean updateContact(Contact contact) throws SQLException {
+    public int updateContact(Contact contact) throws SQLException {
 
         con = ConnectionUtil.getConnection();
-        ps = con.prepareStatement("UPDATE `contact` SET name = ?, number = ? WHERE id = ?");
-        ps.setString(1, contact.getName());
-        ps.setString(2, contact.getNumber());
+        ps = con.prepareStatement("UPDATE `contact` SET id = ?, name = ?, number = ? WHERE id = ?");
+        ps.setInt(1, contact.getId());
+        ps.setString(2, contact.getName());
+        ps.setString(3, contact.getNumber());
         ps.executeUpdate();
-        return true;
+        int n = ps.executeUpdate();
+        return n;
 
     }
 
@@ -55,13 +55,14 @@ public class ContactDao {
         ps.setString(1, contact.getName());
         ps.setString(2, contact.getNumber());
         ps.executeUpdate();
-            return contacts;
+        return contacts;
 
     }
 
-    public int getContactId(Contact contact) throws SQLException {
+    public int getContactId(int id) throws SQLException {
+        Contact contact = new Contact();
         con = ConnectionUtil.getConnection();
-        ps = con.prepareStatement("SELECT * FROM `contact` (`name`, `number`)  VALUES (?, ?)");
+        ps = con.prepareStatement("SELECT * FROM `contact` (`id`, `name`, `number`)  VALUES (?, ?)" + id);
         ps.setString(1, contact.getName());
         ps.setString(2, contact.getNumber());
         int n = ps.executeUpdate();

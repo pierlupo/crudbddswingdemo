@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.Optional;
 
 public class DeleteDialog extends JDialog {
 
@@ -54,14 +55,14 @@ public class DeleteDialog extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Contact contact = new Contact();
+                contact.setId(Integer.parseInt(idSearch.getText()));
                 ContactDao contactDao = new ContactDao();
-                int count = 0;
                 try {
-                    count = contactDao.deleteContact(contact);
+                    contactDao.deleteContact(contact);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
-                if (count > 0) {
+                if (contact.getId()>0){
                     JOptionPane
                             .showConfirmDialog(null, "delete successfull");
                 } else {
