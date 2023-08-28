@@ -16,6 +16,8 @@ public class UpdateDialog extends JDialog {
 
     private JTextField txtName, txtNumber, idSearch;
 
+    private JButton buttonOk, buttonCancel;
+
     public UpdateDialog() {
 
         contentPanel = new JPanel();
@@ -57,7 +59,7 @@ public class UpdateDialog extends JDialog {
         jPanelButton.setLayout(new FlowLayout(FlowLayout.RIGHT));
         getContentPane().add(jPanelButton, BorderLayout.SOUTH);
 
-        JButton buttonOk = new JButton("OK");
+        buttonOk = new JButton("OK");
 
 
         buttonOk.addActionListener(new ActionListener() {
@@ -89,24 +91,14 @@ public class UpdateDialog extends JDialog {
 
         jPanelButton.add(buttonOk);
 
-        JButton buttonCancel = new JButton("Cancel");
+        buttonCancel = new JButton("Cancel");
         jPanelButton.add(buttonCancel);
-
         buttonCancel.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                Contact contact = null;
-                ContactDao contactDao = new ContactDao();
-                try {
-                    contactDao.updateContact(contact);
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
                 dispose();
             }
-
         });
-
     }
 }

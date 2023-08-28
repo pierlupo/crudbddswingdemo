@@ -10,5 +10,6 @@ public class Contact {
 
     private String name, number;
 
-
+    public Contact() {
+    }
 }

@@ -9,11 +9,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.Optional;
 
 public class DeleteDialog extends JDialog {
 
-    private JPanel contentPanel;
+    private JPanel contentPanel, jPanelButton;
 
     private JTextField  idSearch;
 
@@ -38,17 +37,13 @@ public class DeleteDialog extends JDialog {
         JLabel lblSearch = new JLabel("search: ");
         lblSearch.setBounds(10, 20, 50, 15);
         contentPanel.add(lblSearch);
-        JPanel jPanelButton = new JPanel();
+        jPanelButton = new JPanel();
 
         jPanelButton.setLayout(new FlowLayout(FlowLayout.RIGHT));
         getContentPane().add(jPanelButton, BorderLayout.SOUTH);
 
         buttonOk = new JButton("OK");
         jPanelButton.add(buttonOk);
-
-        buttonCancel = new JButton("Cancel");
-        jPanelButton.add(buttonCancel);
-
 
         buttonOk.addActionListener(new ActionListener() {
 
@@ -73,7 +68,14 @@ public class DeleteDialog extends JDialog {
             }
         });
 
+        buttonCancel = new JButton("Cancel");
+        jPanelButton.add(buttonCancel);
+        buttonCancel.addActionListener(new ActionListener() {
 
-
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
     }
 }

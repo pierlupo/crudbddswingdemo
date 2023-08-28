@@ -12,7 +12,7 @@ import java.sql.SQLException;
 
 public class InsertDialog extends JDialog{
 
-    private JPanel contentPanel;
+    private JPanel contentPanel, jPanelButton;
 
     private JTextField txtName, txtNumber;
 
@@ -46,7 +46,7 @@ public class InsertDialog extends JDialog{
         contentPanel.add(lblNum);
 
 
-        JPanel jPanelButton = new JPanel();
+        jPanelButton = new JPanel();
         jPanelButton.setLayout(new FlowLayout(FlowLayout.RIGHT));
         getContentPane().add(jPanelButton, BorderLayout.SOUTH);
 
