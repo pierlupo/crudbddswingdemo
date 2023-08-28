@@ -75,12 +75,10 @@ public class ContactDao {
 
         con = ConnectionUtil.getConnection();
         try {
-            ps = con.prepareStatement("SELECT * FROM `contact` WHERE id=?", ResultSet.TYPE_SCROLL_SENSITIVE,
-                    ResultSet.CONCUR_UPDATABLE);
+            ps = con.prepareStatement("SELECT * FROM `contact` WHERE id=?");
             ps.setInt(1, id);
 
             ResultSet result = ps.executeQuery();
-            //result.getInt("id");
             Contact contact = null;
             if (result.first()) {
                 contact = new Contact();

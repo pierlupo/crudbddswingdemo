@@ -28,7 +28,9 @@ public class SelectDialog extends JDialog {
     SelectDialog() throws SQLException {
 
         contentPanel = new JPanel();
+
         Contact contact = new Contact();
+
         ContactDao contactDao = new ContactDao();
 
         jFrame = new JFrame();
