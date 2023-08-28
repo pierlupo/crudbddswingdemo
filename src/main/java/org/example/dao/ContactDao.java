@@ -2,12 +2,10 @@ package org.example.dao;
 
 import org.example.connexion.ConnectionUtil;
 import org.example.model.Contact;
-
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Vector;
 
 public class ContactDao {

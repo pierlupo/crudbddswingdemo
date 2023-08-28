@@ -7,6 +7,7 @@ import java.sql.SQLException;
 public class ConnectionUtil {
 
     public static Connection getConnection() {
+
         try {
 
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -16,11 +17,9 @@ public class ConnectionUtil {
 
             return con;
 
-
         }catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
             return null;
         }
     }
-
 }

@@ -2,7 +2,6 @@ package org.example.view;
 
 import org.example.dao.ContactDao;
 import org.example.model.Contact;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -26,7 +25,6 @@ public class InsertDialog extends JDialog{
         getContentPane().add(contentPanel, BorderLayout.CENTER);
         contentPanel.setLayout(null);
 
-
         txtName = new JTextField();
         txtName.setBounds(80, 40, 80, 20);
         contentPanel.add(txtName);
@@ -45,13 +43,11 @@ public class InsertDialog extends JDialog{
         lblNum.setBounds(10, 70, 50, 15);
         contentPanel.add(lblNum);
 
-
         jPanelButton = new JPanel();
         jPanelButton.setLayout(new FlowLayout(FlowLayout.RIGHT));
         getContentPane().add(jPanelButton, BorderLayout.SOUTH);
 
         JButton buttonOk = new JButton("OK");
-
 
         buttonOk.addActionListener(new ActionListener() {
 
@@ -77,7 +73,6 @@ public class InsertDialog extends JDialog{
                 }
                 dispose();
             }
-
         });
 
         jPanelButton.add(buttonOk);
@@ -92,6 +87,5 @@ public class InsertDialog extends JDialog{
                 dispose();
             }
         });
-
     }
 }

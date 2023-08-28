@@ -61,7 +61,6 @@ public class UpdateDialog extends JDialog {
 
         buttonOk = new JButton("OK");
 
-
         buttonOk.addActionListener(new ActionListener() {
 
             @Override
@@ -85,7 +84,6 @@ public class UpdateDialog extends JDialog {
                 }
                 dispose();
             }
-
 
         });
 

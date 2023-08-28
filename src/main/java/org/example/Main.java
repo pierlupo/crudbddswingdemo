@@ -1,7 +1,6 @@
 package org.example;
 
 import org.example.view.AppFrame;
-
 import javax.swing.*;
 
 public class Main {

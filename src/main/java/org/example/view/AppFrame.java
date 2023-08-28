@@ -7,7 +7,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
 @Data
 public class AppFrame extends JDialog {
 
@@ -24,7 +23,6 @@ public class AppFrame extends JDialog {
         contentPanel.setBorder(new EmptyBorder(10, 10,10,10));
         getContentPane().add(contentPanel, BorderLayout.NORTH);
         contentPanel.setLayout(null);
-
 
         JPanel jPanelButton = new JPanel();
         JPanel jPanelSelectButton = new JPanel();
@@ -102,23 +100,5 @@ public class AppFrame extends JDialog {
                 }
             }
         });
-
-
     }
-
-//    public static void main(String[] args) {
-//        SwingUtilities.invokeLater(new Runnable() {
-//            public void run() {
-//                try {
-//                    AppFrame dialog = new AppFrame();
-//                    dialog.setTitle("Main Frame");
-//                    dialog.setLocationRelativeTo(null);
-//                    dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-//                    dialog.setVisible(true);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
-//    }
 }

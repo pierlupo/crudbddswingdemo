@@ -1,5 +1,4 @@
 package org.example.view;
-
 import org.example.dao.ContactDao;
 import org.example.model.Contact;
 
@@ -13,6 +12,7 @@ import java.util.List;
 
 
 public class SelectDialog extends JDialog {
+
     private JFrame jFrame;
 
     private JPanel contentPanel, jPanelButton;
